@@ -1,0 +1,35 @@
+Name: Donghao Feng
+USC ID: 1399274691
+
+
+Code files 
+client.cpp, serverA.cpp, serverB.cpp, servermain.cpp, data1.txt, data2.txt, Makefile
+
+What I am done
+I haver finished all the required functionality in the requirement. They are working as expected. Also, I add addtional functions for serverA and serverB so that it can show the number of countries, relations and graphs for each server. 
+
+serverA.cpp and serverB.cpp
+1. Backend servers read files (data1.txt for backend A, data2.txt for backend B)
+2. After that each back end server construct graph structure for each country to represent connections between users.
+3. Finally prints summary of loading (how much graphs, countries, users, connections) and starts "listening" for incomming connctions from mainserver;
+
+servermain.cpp
+1. After bootup, main server send packet(s) with type=REQUEST_COUNTRY_LIST to backend serverA/B to get list of countries.
+2. Create mappings between backend server(s) and country name and starts tcp listening for incomming requests from client;
+
+client.cpp
+1. Client require additional input at the bootup phase, clientID.
+2. This value would be used for conversation with mainserver, to identify different clients (by ID)
+3. If we cant specify these values then we MUST use two different source code files, which is not possible by task requirements;
+4. Client ask for userid/countryname pair, create tcp connection and send packet with type=REQUEST_RECOMENDATIONS to the main server, and waits for response.
+
+data1.txt and data2.txt
+data1.txt stores the user data A and xYz, and data2.txt stores the user data for country Canada.
+
+Makefile
+Support command for "make all", "make serverA", "make serverB", "make mainserver", and "./client".
+
+Idiosyncracy
+The program fails if there are more than 100 users in one country. 
+
+
